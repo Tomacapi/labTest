@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: crmDb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=crm_db
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_HOST=localhost
+
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./backups:/home/backups
+    command: -p 5432
